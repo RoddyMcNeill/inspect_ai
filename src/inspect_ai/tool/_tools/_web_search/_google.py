@@ -127,7 +127,10 @@ def google_search_provider(
         data = result.json()
 
         if "items" in data:
-            return [SearchLink(item["link"], item["snippet"]) for item in data["items"]]
+            return [
+                SearchLink(item["link"], item.get("snippet"), "")
+                for item in data["items"]
+            ]
         else:
             return []
 
